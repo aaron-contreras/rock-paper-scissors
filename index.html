@@ -8,11 +8,10 @@
     <body>
         <script>
             // Javascript here
-
             
             let playerScore = 0;
             let computerScore = 0;
-            console.log(game());
+            game();
             
             function game() {
                 
@@ -23,16 +22,9 @@
 
                     let roundResult = playRound(playerSelection, computerSelection);
                     updateScore(roundResult);
-                    showScores();
-                    
-                }
-
-                console.log(playerScore > computerScore ? 'You win!' : playerScore < computerScore ? 'You lose!' : 'Tie');
-            }
-
-            function showScores() {
-                console.log(playerScore);
-                console.log(computerScore);
+                    showScores();                    
+                }                
+                showGameResult();
             }
 
             function updateScore(roundResult) {
@@ -42,14 +34,27 @@
                     computerScore++;
                 }
             }
+            
+            function showScores() {
+                console.log(playerScore);
+                console.log(computerScore);
+            }
 
-            function playRound(playerSelection, computerSelection) {
-                // rock paper!
-                // !rock scissors
-                // paper scissors!
-                
+            function showGameResult() {
+                console.log(playerScore > computerScore ? 'You win!' : playerScore < computerScore ? 'You lose!' : 'Tie');
+            }
+
+            function showMoves(playerSelection, computerSelection) {
                 console.log(`Player's move: ${playerSelection}`);
                 console.log(`Computer's move: ${computerSelection}`);
+            }
+
+            function playRound(playerSelection, computerSelection) {
+                /* Paper beats rock
+                Rock beats scissors
+                Scissors beats paper */
+                
+                showMoves(playerSelection, computerSelection);                
                 
                 if (playerSelection === 'rock' && computerSelection === 'scissors') {
                     return 'You win! Rock beats Scissors';
@@ -66,8 +71,8 @@
                 } else {
                     return 'Tie!';
                 }
-            }
-
+            }            
+                
             function computerPlay() {
                 const computerChoice = Math.floor(Math.random() * 3);
                 if (computerChoice == 0) {
