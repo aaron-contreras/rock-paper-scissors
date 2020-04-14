@@ -1,89 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1">
-        <title>Rock-Paper-Scissors</title>
-    </head>
-    <body>
-        <script>
-            // Javascript here
-            
-            let playerScore = 0;
-            let computerScore = 0;
-            game();
-            
-            function game() {
-                
-                for (let i = 0; i < 5; i++) {
-                    let playerSelection = prompt('Rock...paper...scissors...SHOOT!');
-                    playerSelection = playerSelection.toLowerCase();
-                    const computerSelection = computerPlay();
 
-                    const roundResult = playRound(playerSelection, computerSelection);
-                    updateScore(roundResult);
-                    showScores();                    
-                }
-                showGameResult();
-            }
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1">
+  <title>Rock-Paper-Scissors</title>
+</head>
 
-            function updateScore(roundResult) {
-                if (!roundResult.indexOf('You win!')) {
-                    playerScore++;
-                } else if (!roundResult.indexOf('You lose!')) {
-                    computerScore++;
-                }
-            }
-            
-            function showScores() {
-                console.log(playerScore);
-                console.log(computerScore);
-            }
+<body>
+  <script>
+    // Javascript here
 
-            function showGameResult() {
-                console.log(playerScore > computerScore ? 'You win!' : playerScore < computerScore ? 'You lose!' : 'Tie');
-            }
+    let playerScore = 0;
+    let computerScore = 0;
+    game();
 
-            function showMoves(playerSelection, computerSelection) {
-                console.log(`Player's move: ${playerSelection}`);
-                console.log(`Computer's move: ${computerSelection}`);
-            }
+    function game() {
 
-            function playRound(playerSelection, computerSelection) {
-                /* Paper beats rock
-                Rock beats scissors
-                Scissors beats paper */
-                
-                showMoves(playerSelection, computerSelection);                
-                
-                if (playerSelection === 'rock' && computerSelection === 'scissors'
-                || playerSelection === 'scissors' && computerSelection === 'rock') {
-                    return playerSelection === 'rock' ?
-                    'You win! Rock beats Scissors' :
-                    'You lose! Rock beats Scissors';
-                } else if (playerSelection === 'paper' && computerSelection === 'rock'
-                || playerSelection === 'rock' && computerSelection === 'paper') {
-                    return playerSelection === 'paper' ? 
-                    'You win! Paper beats Rock' :
-                    'You lose! Paper beats Rock';
-                } else if (playerSelection === 'scissors' && computerSelection === 'paper'
-                || playerSelection === 'paper' && computerSelection === 'scissors') {
-                    return playerSelection === 'scissors' ?
-                    'You win! Scissors beats Paper' :
-                    'You lose! Scissors beats paper';
-                } else {
-                    return 'Tie!';
-                }
-            }            
-                
-            function computerPlay() {
-                const computerChoice = Math.floor(Math.random() * 3);
+      for (let i = 0; i < 5; i++) {
+        let playerSelection = prompt('Rock...paper...scissors...SHOOT!');
+        playerSelection = playerSelection.toLowerCase();
+        const computerSelection = computerPlay();
 
-                return computerChoice === 0 ? 'rock' :
-                computerChoice === 1 ? 'paper' :
-                'scissors';                
-            }
+        const roundResult = playRound(playerSelection, computerSelection);
+        updateScore(roundResult);
+        showScores();
+      }
+      showGameResult();
+    }
 
-        </script>
-    </body>
+    function updateScore(roundResult) {
+      if (!roundResult.indexOf('You win!')) {
+        playerScore++;
+      } else if (!roundResult.indexOf('You lose!')) {
+        computerScore++;
+      }
+    }
+
+    function showScores() {
+      console.log(playerScore);
+      console.log(computerScore);
+    }
+
+    function showGameResult() {
+      console.log(playerScore > computerScore ? 'You win!' : playerScore < computerScore ? 'You lose!' : 'Tie');
+    }
+
+    function showMoves(playerSelection, computerSelection) {
+      console.log(`Player's move: ${playerSelection}`);
+      console.log(`Computer's move: ${computerSelection}`);
+    }
+
+    function playRound(playerSelection, computerSelection) {
+      /* Paper beats rock
+      Rock beats scissors
+      Scissors beats paper */
+
+      showMoves(playerSelection, computerSelection);
+
+      if (playerSelection === 'rock' && computerSelection === 'scissors'
+        || playerSelection === 'scissors' && computerSelection === 'rock') {
+        return playerSelection === 'rock' ?
+          'You win! Rock beats Scissors' :
+          'You lose! Rock beats Scissors';
+      } else if (playerSelection === 'paper' && computerSelection === 'rock'
+        || playerSelection === 'rock' && computerSelection === 'paper') {
+        return playerSelection === 'paper' ?
+          'You win! Paper beats Rock' :
+          'You lose! Paper beats Rock';
+      } else if (playerSelection === 'scissors' && computerSelection === 'paper'
+        || playerSelection === 'paper' && computerSelection === 'scissors') {
+        return playerSelection === 'scissors' ?
+          'You win! Scissors beats Paper' :
+          'You lose! Scissors beats paper';
+      } else {
+        return 'Tie!';
+      }
+    }
+
+    function computerPlay() {
+      const computerChoice = Math.floor(Math.random() * 3);
+
+      return computerChoice === 0 ? 'rock' :
+        computerChoice === 1 ? 'paper' :
+          'scissors';
+    }
+
+  </script>
+</body>
+
 </html>
