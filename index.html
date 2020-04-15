@@ -16,17 +16,31 @@
     game();
 
     function game() {
-
       for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt('Rock...paper...scissors...SHOOT!');
-        playerSelection = playerSelection.toLowerCase();
-        const computerSelection = computerPlay();
-
-        const roundResult = playRound(playerSelection, computerSelection);
-        updateScore(roundResult);
-        showScores();
+        const playerSelection = (
+          prompt('Rock...paper...scissors...SHOOT!')
+          .toLowerCase()
+        );
+        if (isValidMove(playerSelection)) {
+          const computerSelection = computerPlay();
+          const roundResult = playRound(playerSelection, computerSelection);
+          updateScore(roundResult);
+          showScores();
+        } else {
+          alert('Please enter a valid move ("Rock", "Paper" or "Scissors")');
+          i--;
+        }
       }
+
       showGameResult();
+    }
+    
+    function isValidMove(move) {
+      if (move === 'rock' || move === 'paper' || move === 'scissors') {
+        return true;
+      } else {
+        return false;
+      }
     }
 
     function updateScore(roundResult) {
